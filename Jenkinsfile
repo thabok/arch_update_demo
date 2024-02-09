@@ -1,19 +1,7 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    checkout scm
-                }
-            }
-        }
-
         stage('Preparation') {
             steps {
                 script {
@@ -34,23 +22,19 @@ pipeline {
             steps {
                 script {
                     archiveArtifacts 'test/profile.epp'
+
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        includes: '**/*.html',
+                        keepAll: false,
+                        reportDir: 'test',
+                        reportFiles: 'test_report.html, update_report.html',
+                        reportName: 'BTC Test Reports',
+                        reportTitles: 'Test Report, Update Report',
+                    ])
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                includes: '**/*.html',
-                keepAll: false,
-                reportDir: 'test',
-                reportFiles: 'test_report.html, update_report.html',
-                reportName: 'BTC Test Reports',
-                reportTitles: 'Test Report, Update Report',
-            ])
         }
     }
 
