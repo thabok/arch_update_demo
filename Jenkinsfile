@@ -33,7 +33,7 @@ pipeline {
         stage('Wrap Up') {
             steps {
                 script {
-                    archiveArtifacts 'test/swc_1.epp, test/test_report.html, test/update_report.html'
+                    archiveArtifacts 'test/swc_1.epp'
                 }
             }
         }
@@ -42,11 +42,14 @@ pipeline {
     post {
         success {
             publishHTML([
-                allowMissing: true,
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                includes: '**/*.html',
+                keepAll: false,
                 reportDir: 'test',
                 reportFiles: 'test_report.html, update_report.html',
-                reportName: 'BTC Test Report',
-                reportTitles: 'SWC Level Tests with BTC'
+                reportName: 'BTC Test Reports',
+                reportTitles: 'Test Report, Update Report',
             ])
         }
     }
