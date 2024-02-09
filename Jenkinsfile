@@ -17,7 +17,7 @@ pipeline {
         stage('Preparation') {
             steps {
                 script {
-                    powershell 'pip install -r requirements.txt'
+                    bat 'pip install -r requirements.txt'
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
         stage('BTC Test') {
             steps {
                 script {
-                    powershell "python test/run_tests.py ${WORKSPACE}/test/profile.epp"
+                    bat "python test/run_tests.py ${WORKSPACE}/test/profile.epp"
                 }
             }
         }
