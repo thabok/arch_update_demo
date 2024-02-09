@@ -29,8 +29,7 @@ pipeline {
         stage('Archive test results') {
             steps {
                 script {
-                    archiveArtifacts 'test/swc_1.epp'
-                    ptest/test_report.html, test/update_report.html'
+                    archiveArtifacts 'test/swc_1.epp, test/test_report.html, test/update_report.html'
                 }
             }
         }
