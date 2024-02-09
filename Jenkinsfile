@@ -33,7 +33,7 @@ pipeline {
         stage('Wrap Up') {
             steps {
                 script {
-                    archiveArtifacts 'test/swc_1.epp'
+                    archiveArtifacts 'test/profile.epp'
                 }
             }
         }
