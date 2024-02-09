@@ -12,7 +12,7 @@
 *.slxc
 *.slx.autosave
 *.mex64
-*.bak
+*.bak*
 **/*_rtw/
 **/*_ep_stubs/
 
