@@ -16,7 +16,6 @@ def run_tests(epp_file):
     update_report = ep.get('architectures/architecture-update-report')
     ep.post(f"reports/{update_report['uid']}", { 'exportPath': work_dir, 'newName': 'update_report' })
 
-
     # Run req-based tests
     scopes = ep.get('scopes')
     scope_uids = [scope['uid'] for scope in scopes if scope['architecture'] == 'Simulink']
@@ -55,6 +54,6 @@ def run_tests(epp_file):
 # if the script is called directly: expect
 # - the first argument to be the epp path
 if __name__ == '__main__':
-    # run_tests(sys.argv[1])
-    run_tests('test/profile.epp')
+    run_tests(sys.argv[1])
+    # run_tests('test/profile.epp')
     
