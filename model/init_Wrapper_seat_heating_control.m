@@ -6,7 +6,7 @@ init;
 
 dsout_HeatingActivate_SetHeatingCoil_temp= Simulink.Signal;
 dsout_HeatingActivate_SetHeatingCoil_temp.StorageClass = 'ExportedGlobal';
-dsout_HeatingActivate_SetHeatingCoil_temp.DataType = 'single';
+dsout_HeatingActivate_SetHeatingCoil_temp.DataType = 'uint8';
 dsout_HeatingActivate_SetHeatingCoil_temp.Dimensions = [1 1];
 dsout_HeatingActivate_SetHeatingCoil_temp.Complexity = 'real';
 dsout_HeatingActivate_SetHeatingCoil_temp.InitialValue = '';
