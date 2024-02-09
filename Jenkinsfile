@@ -1,8 +1,12 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     stages {
-        stage('Checkout repo content') {
+        stage('Checkout') {
             steps {
                 script {
                     checkout scm
@@ -10,7 +14,7 @@ pipeline {
             }
         }
 
-        stage('Ensure required python packages') {
+        stage('Preparation') {
             steps {
                 script {
                     powershell 'pip install -r requirements.txt'
@@ -18,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Run test workflow') {
+        stage('BTC Test') {
             steps {
                 script {
                     powershell "python test/run_tests.py ${WORKSPACE}/test/profile.epp"
@@ -26,7 +30,7 @@ pipeline {
             }
         }
 
-        stage('Archive test results') {
+        stage('Wrap Up') {
             steps {
                 script {
                     archiveArtifacts 'test/swc_1.epp, test/test_report.html, test/update_report.html'
