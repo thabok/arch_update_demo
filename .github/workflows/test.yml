@@ -1,0 +1,33 @@
+name: SWC level tests with BTC (RBT + B2B)
+
+# run on pull (re-)opened requests or on demand
+on:
+  # push:
+  
+  # allow workflow to be triggered manually
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "test"
+  test:
+    # Runs on a pre-configured VM with 
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v3
+      
+      - name: Ensure required python packages
+        run: pip install -r requirements.txt
+        shell: cmd
+
+      - name: Run test workflow
+        run:  python test/run_tests.py "${{github.workspace}}/test/profile.epp"
+        
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test_results
+          path: |
+            test/swc_1.epp
+            test/test_report.html

@@ -1,0 +1,23 @@
+# General
+*.html
+
+# Python
+**/__pycache__/
+*.pyc
+*.pyo
+**/*.egg-info/
+
+# Simulink
+**/slprj/
+*.slxc
+*.slx.autosave
+*.mex64
+*.bak
+**/*_rtw/
+**/*_ep_stubs/
+
+# MacOS
+.DS_Store
+
+logs/current.log
+BTC_EP_Rte_Type.h
